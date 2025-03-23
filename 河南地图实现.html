@@ -36,10 +36,24 @@
   //设置数据
   //渲染
   var myChart = echarts.init(document.querySelector('.main'));
-  $.get('json/map/henan.json',function(henanJson){
+  $.get('./henan.json',function(henanJson){
     console.log(henanJson);
     echarts.registerMap('henanMap',henanJson);
     var option={
+        series:[
+            {
+                type:'map',
+                map:'henanMap',
+                roam:true,
+                label:{
+                    show:true,
+                    color:'#000',
+                    fontSize:12
+                },
+                zoom:1.2,
+                
+            }
+        ]
 
     }
      myChart.setOption(option);
