@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+    .main{
+        width: 800px;
+        height: 1000px;
+        /* background-color: #fff; */
+    
+    }
+</style>
+<body>
+    <div class="main"></div>
+</body>
+<!--  引入echarts -->
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<!-- 引入 jquery -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script > 
+  //1.echarts最基本的代码结构
+  //2.准备数据，设置给 series.data
+  //3.将 type 的值改为 radar
+  //4.设置雷达图的指示器，通过 radar.indicator 属性配置
+  //5.设置雷达图的形状，通过 radar.shape 属性配置
+
+    var myChart = echarts.init(document.querySelector('.main'));
+   var option = {
+    
+    series:[{
+        type:'gauge',// 仪表盘
+        radius:'80%',// 仪表盘的大小
+       
+        data:[
+            {   
+                    name:'小米手机',
+                    value:90,
+                    itemStyle:{
+                        color:'red'
+                    }
+            },
+            {   
+                    name:'华为手机',
+                    value:85,
+                    itemStyle:{
+                        color:'green'
+                    }
+            },
+            {   
+                    name:'苹果手机',
+                    value:70,
+                    itemStyle:{
+                        color:'blue'
+                    }
+            },
+           
+        
+        ],
+        min:50,//最小值
+        max:100,//最大值
+       
+    }]
+
+   };
+       
+    myChart.setOption(option);
+   
+</script>
+</html>
