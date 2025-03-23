@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+    .main{
+        width: 800px;
+        height: 1000px;
+        /* background-color: #fff; */
+    
+    }
+</style>
+<body>
+    <div class="main"></div>
+</body>
+<!--  引入echarts -->
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<!-- 引入 jquery -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script > 
+  //1.echarts最基本的代码结构
+  //2.定义各个纬度的最大值，通过 radar属性配置
+  //易用性，功能，拍照，跑分，续航，每个纬度的最大值是 100
+  //3，准备产品数据，设置给 series.data
+  //小米手机：[90,80,70,85,95]
+  //华为手机：[85,90,80,90,90]
+  //苹果手机：[70,80,90,75,80]
+  //4，将 type 的值改为 radar
+  //5，设置雷达图的指示器，通过 radar.indicator 属性配置
+
+    var myChart = echarts.init(document.querySelector('.main'));
+    //定义各个纬度的最大值
+    var dataMax =[
+                 {name:'易用性',max:100},
+                  {name:'功能',max:100},
+                  {name:'拍照',max:100},
+                  {name:'跑分',max:100},
+                  {name:'续航',max:100},
+                ];
+
+   var option = {
+    radar:{
+        indicator:dataMax, //雷达图的指示器
+        shape:'polygon',//雷达图的形状circle polygon(多边形默认)
+     
+    },
+    legend:{// 图例
+            data:['小米手机','华为手机','苹果手机']
+        },
+    series:[{
+        type:'radar',//雷达图
+        label:{
+            show:true
+        },
+        areaStyle:{//区域填充样式
+            // color:'rgba(255,0,0,0.3)'
+        },
+       
+        data:[
+            {   
+                name:'小米手机',
+                value:[90,80,70,85,95]
+            },
+            {
+                name:'华为手机',
+                value:[85,90,80,90,90]
+            },
+            {
+                name:'苹果手机',
+                value:[70,80,90,75,80]
+            }
+        ],
+       
+    }]
+
+   };
+       
+    myChart.setOption(option);
+   
+</script>
+</html>
