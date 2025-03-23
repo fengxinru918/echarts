@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+    .main{
+        width: 600px;
+        height: 500px;
+        /* background-color: #fff; */
+    
+    }
+</style>
+<body>
+    <div class="main"></div>
+</body>
+<!-- 1. 引入 -->
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+<script > 
+//    2. 使用
+    var myChart = echarts.init(document.querySelector('.main'));
+    var xDataArr = ['html5', 'css3', 'javascript', 'vue', 'react'];
+    var yDataArr = [70, 34, 60, 78, 69];
+    // 3. 配置
+    var option = {
+        title: {
+            text: '前端分数统计',
+            subtext: '2025年',
+            textStyle: {
+                color: 'red',
+                fontSize: 24
+            }
+        },
+        tooltip: {//提示框
+            show:true,
+            trigger: 'axis'
+        },  
+        toolbox: {
+            show: true,
+            feature: {
+                saveAsImage: {},//导出图片
+                restore: {},//还原
+                dataView: {},//数据视图
+                magicType: {//切换图表类型
+                    type: ['line', 'bar']
+                },
+                dataZoom: {},//区域缩放
+                
+            }
+        } ,
+        xAxis:{
+            type: 'category',
+            data: xDataArr
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: '分数',
+                type: 'bar',//柱状图
+                data: yDataArr,
+                markPoint: {
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'},
+                      
+                    ]
+                },
+                markLine: {
+                    data: [
+                        {type: 'average', name: '平均值'}
+                    ]
+                },
+                label:{
+                    show: true,
+                    position: 'inside',
+                    color: 'red',
+                    fontSize: 16
+                    
+
+                },
+                
+            }
+        ]
+    };
+    // 4. 设置
+    myChart.setOption(option);
+</script>
+</html>

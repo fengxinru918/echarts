@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+    .main{
+        width: 800px;
+        height: 1000px;
+        /* background-color: #fff; */
+    
+    }
+</style>
+
+<body>
+    <div class="main"></div>
+</body>
+<!--  引入echarts -->
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<!-- 引入 jquery -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script > 
+  //初始化echarts实例
+  //获取dom节点
+  //创建echarts实例
+  //使用 Ajaxh获取矢量地图数据
+  //在 Ajax 的回调中注册地图数据 echarts.registerMap('chinaMap',chinaJson);
+  //配置series的 type 为‘map’，map 为‘chinaMap’
+  //设置数据
+  //渲染
+  var myChart = echarts.init(document.querySelector('.main'));
+  $.get('json/map/henan.json',function(henanJson){
+    console.log(henanJson);
+    echarts.registerMap('henanMap',henanJson);
+    var option={
+
+    }
+     myChart.setOption(option);
+  })
+
+  </script>
+
+</html>

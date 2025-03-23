@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+    .main{
+        width: 600px;
+        height: 500px;
+        /* background-color: #fff; */
+    
+    }
+</style>
+<body>
+    <div class="main"></div>
+</body>
+<!-- 1. 引入 -->
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+<script > 
+//    2. 使用
+    var myChart = echarts.init(document.querySelector('.main'));
+    var dataArr = [{
+        name: 'html5',
+        value: 70
+    }, {
+        name: 'css3',
+        value: 24
+    }, {
+        name: 'javascript',
+        value: 40
+    }, {
+        name: 'vue',
+        value: 78
+    }, {
+        name: 'react',
+        value: 99
+    }];
+    var option={
+            series:[
+                {
+                name:'前端分数',
+                type:'pie',//饼图
+                data:dataArr,
+                // radius:['50%','70%'],//环图的半径
+                radius:'70%',//饼图的半径
+                label:{
+                    show:true,
+                    formatter:function(params){
+                        return params.name+':'+params.value+'分';
+                    }
+                },
+                roseType:'radius',//玫瑰图
+                // selectedMode:'single',//选中模式single/multiple
+                selectedMode:'multiple',//选中模式single/multiple
+                selectedOffset:10,//选中偏移量
+          
+
+            } 
+        ],
+    };
+
+    myChart.setOption(option);
+ </script>
+ </html>
