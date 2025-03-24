@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+    .main{
+        width: 600px;
+        height: 500px;
+        /* background-color: #fff; */
+    
+    }
+</style>
+<body>
+    <div class="main"></div>
+</body>
+<!-- 1. 引入 -->
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script src="./test.js" ></script>
+
+<script > 
+//    2. 使用
+    var myChart = echarts.init(document.querySelector('.main'),'test');// 初始化echarts实例
+   var xDataArr= ['1月', '2月', '3月', '4月', '5月','6月', '7月', '8月', '9月', '10月','11月', '12月'];
+   var yDataArr =  [120, 132, 101, 134, 90, 230, 210, 220, 182, 191, 234, 290];
+   var yDataArr2 =  [110, 130, 100, 124, 30, 130, 280, 250, 102, 161, 134, 270];
+
+    // 3. 配置
+    var option = {
+        title: {
+            text: '销售统计',
+            subtext: '2025年',
+            textStyle: {
+                color: 'red',
+                fontSize: 24
+            }
+        },
+        tooltip: {//提示框
+            show:true,
+            trigger: 'axis'
+        },  
+        toolbox: {
+            show: true,
+            feature: {
+                saveAsImage: {},//导出图片
+                restore: {},//还原
+                dataView: {},//数据视图
+                magicType: {//切换图表类型
+                    type: ['line', 'bar']
+                },
+                dataZoom: {},//区域缩放
+                
+            }
+        } ,
+        xAxis:{
+            type: 'category',
+            data: xDataArr,//数据
+            boundaryGap: false,//坐标轴两边是否留白
+            axisLine: {//坐标轴线
+                show: true,
+                lineStyle: {
+                    color: 'red',
+                    width: 2
+                }
+            },
+            axisLabel: {//坐标轴刻度标签
+                color: 'green',
+                fontSize: 16
+            },
+            axisTick: {//坐标轴刻度
+                show: true
+            },
+
+
+        },
+        yAxis: {
+            type: 'value',//数据类型
+            scale:true,//是否是脱离0值比例
+        },
+        series: [
+            {
+                name: '钱数',//系列名称
+                type: 'line',//折线图
+                data: yDataArr,
+                stack:'总量',
+                areaStyle: {
+                    color: 'pink'
+                },
+                markPoint: {//标记点
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'},
+                    ]
+                },
+                markLine: {//标记线
+                    data: [
+                        {type: 'average', name: '平均值'}
+                    ]
+                },
+                markArea: {//标记区域
+                    data: [
+                        [
+                            { xAxis: '6月'},
+                            { xAxis: '7月'}
+                        ],
+                        [
+                            { xAxis: '11月'},
+                            { xAxis: '12月'}
+                        ],
+
+                    ]
+                },
+                smooth: true,     //平滑曲线
+                lineStyle: {//线条样式
+                    color: 'green',
+                    width: 2,
+                    type: 'dashed'
+                },
+                areaStyle: {//区域填充
+                    color: 'pink'
+                },
+
+                label:{
+                    show: true,
+                    position: 'inside',
+                    color: 'red',
+                    fontSize: 16
+                    
+
+                },
+                
+            },
+            {
+                name: '钱数',//系列名称
+                type: 'line',//折线图
+                data: yDataArr2,
+                stack:'总量',
+                markPoint: {//标记点
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'},
+                    ]
+                },
+                markLine: {//标记线
+                    data: [
+                        {type: 'average', name: '平均值'}
+                    ]
+                },
+                markArea: {//标记区域
+                    data: [
+                        [
+                            { xAxis: '6月'},
+                            { xAxis: '7月'}
+                        ],
+                        [
+                            { xAxis: '11月'},
+                            { xAxis: '12月'}
+                        ],
+
+                    ]
+                },
+                smooth: true,     //平滑曲线
+                lineStyle: {//线条样式
+                    color: 'green',
+                    width: 2,
+                    type: 'dashed'
+                },
+                areaStyle: {//区域填充
+                    color: 'pink'
+                },
+
+                label:{
+                    show: true,
+                    position: 'inside',
+                    color: 'red',
+                    fontSize: 16
+                    
+
+                },
+                
+            }
+        ]
+        
+    };
+   
+    // 4. 设置
+    myChart.setOption(option);
+</script>
+</html>
