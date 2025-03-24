@@ -1,0 +1,22 @@
+[
+  {
+    "gender": "male",
+    "height": 175.3,
+    "weight": 70.9
+  },
+  {
+    "gender": "female",
+    "height": 160.2,
+    "weight": 55.3
+  },
+  {
+    "gender": "male",
+    "height": 182.7,
+    "weight": 85.4
+  },
+  {
+    "gender": "female",
+    "height": 158.6,
+    "weight": 52.1
+  }
+]

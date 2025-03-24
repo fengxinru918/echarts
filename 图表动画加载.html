@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>散点图</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+    .main {
+        width: 600px;
+        height: 500px;
+        margin: 50px auto;
+        background-color: #fff;
+    }
+</style>
+<body>
+    <div class="main"></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    // 初始化 ECharts 实例
+    var myChart = echarts.init(document.querySelector('.main'));
+    // 身高和体重数据
+    myChart.showLoading();//加载动画
+    $.get('./data.json', function (dataJson) {
+        myChart.hideLoading();//隐藏加载动画
+        console.log(dataJson);
+        var data = [ ];
+        for (var i = 0; i < dataJson.length; i++) {
+            var height = dataJson[i].height;
+            var weight = dataJson[i].weight;
+            var itemArr = [height, weight];
+            data.push(itemArr);  
+        }
+     
+        // 配置项
+    var option = {
+        title: {
+            text: '身高与体重散点图',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: function (params) {
+                return `身高: ${params.value[0]} cm<br>体重: ${params.value[1]} kg`;
+            }
+        },
+        xAxis: {
+            name: '身高 (cm)',
+            type: 'value',
+            min: 140,
+            max: 190
+        },
+        yAxis: {
+            name: '体重 (kg)',
+            type: 'value',
+            min: 30,
+            max: 80
+        },
+        series: [
+            {
+                name: '身高与体重',
+                // type: 'scatter',//散点图
+                type: 'effectScatter',//带有涟漪特效动画的散点图
+                showEffectOn: 'render',//配置何时显示特效emphasis:鼠标悬停时显示
+                data: data,
+                symbolSize: function (data) {
+                    return data[1] / 5; // 根据体重调整点的大小
+                },
+                itemStyle: {
+                    color: 'pink'
+                }
+            }
+        ]
+    };
+    // 设置配置项
+    myChart.setOption(option);
+    });
+
+    
+</script>
+</html>
